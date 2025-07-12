@@ -5,15 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6a90705c-7707-400d-b53f-567ef7f1fadd" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/alembic_service/.dockerignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/backend/.dockerignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/alembic_service/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/alembic_service/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/alembic_service/req.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/poetry.lock" beforeDir="false" afterPath="$PROJECT_DIR$/poetry.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/pyproject.toml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/backend/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/backend/req.txt" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
