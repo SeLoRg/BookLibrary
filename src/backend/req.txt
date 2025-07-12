@@ -1,0 +1,9 @@
+uvicorn
+fastapi
+pydantic
+pydantic-settings
+sqlalchemy
+black
+alembic
+asyncpg
+httpx
