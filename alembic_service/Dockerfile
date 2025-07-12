@@ -1,9 +1,11 @@
 FROM python:3.11-slim-bookworm
 
-RUN pip install --upgrade pip
+RUN pip install --upgrade pip && pip install poetry
+
 WORKDIR /alembic_service
-COPY alembic_service/req.txt ./req.txt
-RUN pip install -r ./req.txt
+
+COPY pyproject.toml poetry.lock* ./
+RUN poetry config virtualenvs.create false && poetry install --no-root --no-dev
 
 COPY alembic_service .
 

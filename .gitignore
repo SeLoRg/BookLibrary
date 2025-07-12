@@ -1,2 +1,4 @@
-.venv
 .env
+src/backend/common/Core/.env
+.poetry/
+.venv/

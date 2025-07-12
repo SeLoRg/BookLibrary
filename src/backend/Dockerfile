@@ -1,9 +1,11 @@
 FROM python:3.11-slim
 
-WORKDIR /src
-COPY req.txt ./backend/req.txt
+RUN pip install --upgrade pip && pip install poetry
 
-RUN pip install --upgrade pip && pip install -r ./backend/req.txt
+WORKDIR /src
+
+COPY pyproject.toml poetry.lock* ./
+RUN poetry config virtualenvs.create false && poetry install --no-root --no-dev
 
 COPY . ./backend
 

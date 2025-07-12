@@ -27,9 +27,9 @@ services:
   main:
     image: app-main:1.0
     build:
-      context: src/backend
-      dockerfile: ./Dockerfile
-    env_file: src/backend/req.txt
+      context: .
+      dockerfile: src/backend/Dockerfile
+    env_file: src/backend/common/Core/.env
     depends_on:
       db:
         condition: service_healthy

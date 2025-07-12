@@ -1,3 +1,0 @@
-alembic
-asyncpg
-pydantic_settings
