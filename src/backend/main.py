@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from src.backend.common.exceptions.handlers import *
-from src.backend.library_catalog.app.LibraryCatalogRouter import LibraryCatalogRouter
+from src.backend.library_catalog.app.LibraryCatalogRouter import router
 
 app = FastAPI()
 app = FastAPI(
@@ -11,7 +11,7 @@ app = FastAPI(
     docs_url="/api/docs",  # Путь для Swagger UI
     redoc_url="/api/redoc",  # Путь для Redoc UI
 )
-app.include_router(LibraryCatalogRouter().router)
+app.include_router(router)
 app.add_exception_handler(ServiceError, service_exception_handler)
 app.add_exception_handler(SQLAlchemyError, sqlalchemy_exception_handler)
 app.add_exception_handler(Exception, general_exception_handler)

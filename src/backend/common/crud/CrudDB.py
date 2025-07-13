@@ -1,3 +1,5 @@
+from uuid import UUID
+
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.future import select
 from sqlalchemy import update, delete, exc, Result
@@ -44,7 +46,7 @@ class CrudDB(Generic[T]):
         except exc.SQLAlchemyError as e:
             raise ValueError(f"Failed to create {self.model.__name__}: {str(e)}")
 
-    async def update_by_id(self, object_id: int, **update_fields) -> Optional[T]:
+    async def update_by_id(self, object_id: UUID, **update_fields) -> Optional[T]:
         try:
             if not update_fields:
                 raise ValueError("No fields provided for update.")
@@ -62,7 +64,7 @@ class CrudDB(Generic[T]):
         except exc.SQLAlchemyError as e:
             raise ValueError(f"Failed to update {self.model.__name__}: {str(e)}")
 
-    async def delete_by_id(self, object_id: int) -> None:
+    async def delete_by_id(self, object_id: UUID) -> None:
         try:
             stmt = delete(self.model).where(self.model.id == object_id)
             await self.session.execute(stmt)
