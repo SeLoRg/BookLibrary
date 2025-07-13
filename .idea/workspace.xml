@@ -5,8 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6a90705c-7707-400d-b53f-567ef7f1fadd" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/backend/library_catalog/app/LibraryCatalogRouter.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/backend/library_catalog/services/LibraryCatalogService.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend/library_catalog/services/LibraryCatalogService.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/backend/common/Models/Books.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend/common/Models/Books.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/backend/library_catalog/app/router.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend/common/logging/log_funces.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/backend/library_catalog/schemas/schemas.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend/library_catalog/schemas/schemas.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/backend/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
