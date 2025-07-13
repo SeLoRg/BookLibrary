@@ -1,5 +1,7 @@
 from src.backend.common.crud.BookRepository import BookRepository
 from src.backend.common.Models import Books
+from src.backend.common.exceptions.exceptions import ServiceError
+from src.backend.common.logging.logger import logger
 from typing import Optional, List
 
 
@@ -10,22 +12,46 @@ class LibraryCatalogService:
     async def get_books(
         self, limit: int = 100, skip: int = 0, **filters
     ) -> List[Books]:
-        """Получение списка всех книг с возможностью фильтрации"""
-        return await self.book_repo.get_by_filter(limit=limit, skip=skip, **filters)
+        try:
+            return await self.book_repo.get_by_filter(limit=limit, skip=skip, **filters)
+        except Exception as e:
+            logger.error(f"Ошибка при получении списка книг: {e}", exc_info=True)
+            raise ServiceError("Не удалось получить список книг")
 
     async def get_book(self, book_id: int) -> Optional[Books]:
-        """Получение информации о конкретной книге по id"""
-        books = await self.book_repo.get_by_filter(id=book_id)
-        return books[0] if books else None
+        try:
+            books = await self.book_repo.get_by_filter(id=book_id)
+            if not books:
+                raise ServiceError(f"Книга с id={book_id} не найдена", status_code=404)
+            return books[0]
+        except ServiceError:
+            raise
+        except Exception as e:
+            logger.error(f"Ошибка при получении книги: {e}", exc_info=True)
+            raise ServiceError("Не удалось получить книгу")
 
     async def add_book(self, **book_data) -> Books:
-        """Добавление новой книги в каталог"""
-        return await self.book_repo.create(**book_data)
+        try:
+            return await self.book_repo.create(**book_data)
+        except Exception as e:
+            logger.error(f"Ошибка при добавлении книги: {e}", exc_info=True)
+            raise ServiceError("Не удалось добавить книгу")
 
     async def update_book(self, book_id: int, **update_data) -> Optional[Books]:
-        """Обновление информации о книге"""
-        return await self.book_repo.update_by_id(object_id=book_id, **update_data)
+        try:
+            book = await self.book_repo.update_by_id(object_id=book_id, **update_data)
+            if not book:
+                raise ServiceError(f"Книга с id={book_id} не найдена", status_code=404)
+            return book
+        except ServiceError:
+            raise
+        except Exception as e:
+            logger.error(f"Ошибка при обновлении книги: {e}", exc_info=True)
+            raise ServiceError("Не удалось обновить книгу")
 
     async def delete_book(self, book_id: int) -> None:
-        """Удаление книги из каталога"""
-        await self.book_repo.delete_by_id(object_id=book_id)
+        try:
+            await self.book_repo.delete_by_id(object_id=book_id)
+        except Exception as e:
+            logger.error(f"Ошибка при удалении книги: {e}", exc_info=True)
+            raise ServiceError("Не удалось удалить книгу")
