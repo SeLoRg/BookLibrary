@@ -1,5 +1,5 @@
 from sqlalchemy.orm import Mapped, mapped_column
-from sqlalchemy import Date as Date_DB
+from sqlalchemy import Date as Date_DB, UniqueConstraint
 from datetime import date
 from .Base import Base
 
@@ -13,3 +13,9 @@ class Books(Base):
     genre: Mapped[str] = mapped_column(nullable=False)
     pages: Mapped[int] = mapped_column(nullable=False)
     availability: Mapped[bool] = mapped_column(default=True)
+
+    __table_args__ = (
+        UniqueConstraint(
+            "title", "author", "public_year", "genre", name="uq_book_unique_fields"
+        ),
+    )
