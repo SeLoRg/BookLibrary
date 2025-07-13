@@ -5,8 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6a90705c-7707-400d-b53f-567ef7f1fadd" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/backend/common/Core/.env.example" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/backend/common/DB/db.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/backend/common/logging/logger.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/backend/dependencies.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/poetry.lock" beforeDir="false" afterPath="$PROJECT_DIR$/poetry.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/pyproject.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/backend/common/DB/Database.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend/common/DB/Database.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/backend/common/crud/BookRepository.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend/common/crud/BookRepository.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/backend/common/crud/CrudDB.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend/common/crud/CrudDB.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/backend/library_catalog/services/LibraryCatalogService.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend/library_catalog/services/LibraryCatalogService.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/backend/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
