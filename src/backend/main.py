@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-
+from src.backend.common.exceptions.handlers import *
 
 app = FastAPI()
 app = FastAPI(
@@ -10,3 +10,6 @@ app = FastAPI(
     docs_url="/api/docs",  # Путь для Swagger UI
     redoc_url="/api/redoc",  # Путь для Redoc UI
 )
+app.add_exception_handler(ServiceError, service_exception_handler)
+app.add_exception_handler(SQLAlchemyError, sqlalchemy_exception_handler)
+app.add_exception_handler(Exception, general_exception_handler)
