@@ -14,6 +14,10 @@ class Books(Base):
     pages: Mapped[int] = mapped_column(nullable=False)
     availability: Mapped[bool] = mapped_column(default=True)
 
+    cover: Mapped[str] = mapped_column(nullable=True)
+    description: Mapped[str] = mapped_column(nullable=True)
+    rating: Mapped[float] = mapped_column(default=0.0)
+
     __table_args__ = (
         UniqueConstraint(
             "title", "author", "public_year", "genre", name="uq_book_unique_fields"
