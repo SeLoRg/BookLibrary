@@ -30,10 +30,7 @@ async def get_book(
     book_id: UUID,
     service: LibraryCatalogService = Depends(get_library_catalog_service),
 ):
-    book = await service.get_book(book_id)
-    if not book:
-        raise HTTPException(status_code=404, detail="Книга не найдена")
-    return book
+    return await service.get_book(book_id)
 
 
 @router.post("", response_model=BookOut)
@@ -50,10 +47,7 @@ async def update_book(
     data: BookSchema,
     service: LibraryCatalogService = Depends(get_library_catalog_service),
 ):
-    updated = await service.update_book(book_id, **data.model_dump(exclude_none=True))
-    if not updated:
-        raise HTTPException(status_code=404, detail="Книга не найдена")
-    return updated
+    return await service.update_book(book_id, **data.model_dump(exclude_none=True))
 
 
 @router.delete("/{book_id}", status_code=204)
