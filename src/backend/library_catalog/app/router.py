@@ -7,9 +7,7 @@ from src.backend.library_catalog.services.LibraryCatalogService import (
     LibraryCatalogService,
 )
 from src.backend.common.dependencies import get_library_catalog_service
-from src.backend.common.Models import Books
 from src.backend.library_catalog.schemas.schemas import BookFilter, BookSchema, BookOut
-from src.backend.common.logging.log_funces import log_route
 
 router = APIRouter(prefix="/api/books", tags=["Книги"])
 

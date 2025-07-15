@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from src.backend.common.exceptions.handlers import *
-from src.backend.library_catalog.app.LibraryCatalogRouter import router
+from src.backend.library_catalog.app.router import router
 
 app = FastAPI()
 app = FastAPI(

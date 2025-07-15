@@ -1,6 +1,5 @@
 import datetime
 from uuid import UUID
-
 from fastapi import Query
 from pydantic import BaseModel, Extra
 from typing import Optional

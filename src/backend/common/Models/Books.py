@@ -16,7 +16,7 @@ class Books(Base):
 
     cover: Mapped[str] = mapped_column(nullable=True)
     description: Mapped[str] = mapped_column(nullable=True)
-    rating: Mapped[float] = mapped_column(default=0.0)
+    rainting: Mapped[float] = mapped_column(default=0.0)
 
     __table_args__ = (
         UniqueConstraint(
