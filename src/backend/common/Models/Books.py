@@ -14,7 +14,7 @@ class Books(Base):
     pages: Mapped[int] = mapped_column(nullable=False)
     availability: Mapped[bool] = mapped_column(default=True)
 
-    cover: Mapped[str] = mapped_column(nullable=True)
+    cover_url: Mapped[str] = mapped_column(nullable=True)
     description: Mapped[str] = mapped_column(nullable=True)
     rating: Mapped[float] = mapped_column(default=0.0)
 
