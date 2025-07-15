@@ -16,6 +16,15 @@ class BookFilter(BaseModel):
     skip: int = Query(0, ge=0)
 
 
+class BookAdd(BaseModel):
+    title: str
+    author: str
+    genre: str
+    public_year: datetime.date
+    pages: int
+    availability: bool
+
+
 class BookSchema(BaseModel):
     title: Optional[str] = None
     author: Optional[str] = None
@@ -27,3 +36,6 @@ class BookSchema(BaseModel):
 
 class BookOut(BookSchema):
     id: UUID
+    description: Optional[str] = None
+    rating: Optional[float] = None
+    cover_url: Optional[str] = None

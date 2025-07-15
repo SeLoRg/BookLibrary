@@ -7,7 +7,12 @@ from src.backend.library_catalog.services.LibraryCatalogService import (
     LibraryCatalogService,
 )
 from src.backend.common.dependencies import get_library_catalog_service
-from src.backend.library_catalog.schemas.schemas import BookFilter, BookSchema, BookOut
+from src.backend.library_catalog.schemas.schemas import (
+    BookFilter,
+    BookSchema,
+    BookOut,
+    BookAdd,
+)
 
 router = APIRouter(prefix="/api/books", tags=["Книги"])
 
@@ -33,7 +38,7 @@ async def get_book(
 
 @router.post("", response_model=BookOut)
 async def add_book(
-    book: BookSchema,
+    book: BookAdd,
     service: LibraryCatalogService = Depends(get_library_catalog_service),
 ):
     return await service.add_book(**book.model_dump(exclude_none=True))

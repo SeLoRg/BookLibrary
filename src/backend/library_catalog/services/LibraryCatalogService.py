@@ -1,4 +1,6 @@
 from uuid import UUID
+
+from src.backend.common.api_clients.OpenLibraryClient import OpenLibraryClient
 from src.backend.common.crud.BookRepository import BookRepository
 from src.backend.common.Models import Books
 from src.backend.common.exceptions.exceptions import ServiceError
@@ -7,8 +9,9 @@ from typing import Optional, List
 
 
 class LibraryCatalogService:
-    def __init__(self, book_repo: BookRepository):
+    def __init__(self, book_repo: BookRepository, library_client: OpenLibraryClient):
         self.book_repo = book_repo
+        self.library_client = library_client
 
     async def get_books(
         self, limit: int = 100, skip: int = 0, **filters
@@ -33,7 +36,28 @@ class LibraryCatalogService:
 
     async def add_book(self, **book_data) -> Books:
         try:
-            new_book: Books = await self.book_repo.create(**book_data)
+            title = book_data.get("title")
+
+            if not title:
+                raise ServiceError("Отсутствует обязательное поле title")
+
+            over_book_data = await self.library_client.search_book_info(title=title)
+
+            new_book_data = {
+                **(
+                    {
+                        "rating": over_book_data.get("rating", 0.0),
+                        "cover_url": over_book_data.get("cover_url", None),
+                        "description": over_book_data.get("description"),
+                    }
+                    if over_book_data
+                    else {}
+                ),
+                **book_data,
+            }
+
+            new_book: Books = await self.book_repo.create(**new_book_data)
+
             await self.book_repo.session.commit()
             return new_book
         except Exception as e:

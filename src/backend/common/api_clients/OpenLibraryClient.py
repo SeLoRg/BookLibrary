@@ -10,7 +10,7 @@ class OpenLibraryClient(BaseApiClient):
         params: Optional[Dict[str, Any]] = None,
         headers: Optional[Dict[str, str]] = None,
         json: Optional[Dict[str, Any]] = None,
-    ) -> Optional[dict, Any]:
+    ) -> Optional[Dict[str, Any]]:
         return await self._request(
             method, endpoint, params=params, headers=headers, json=json
         )
@@ -30,7 +30,6 @@ class OpenLibraryClient(BaseApiClient):
         year = first.get("first_publish_year", "")
 
         # 2. Получение описания и рейтинга
-        work_url = f"https://openlibrary.org{work_key}.json"
         work_data = await self.send_request(method="GET", endpoint=f"{work_key}.json")
 
         description = None
@@ -39,7 +38,17 @@ class OpenLibraryClient(BaseApiClient):
         elif isinstance(work_data.get("description"), str):
             description = work_data["description"]
 
-        # 3. Сбор результата
+        # 3. Получение рейтинга
+        rating_data = await self.send_request(
+            method="GET", endpoint=f"{work_key}/ratings.json"
+        )
+        rating_data.get("summary", {}).get("average", 0.0)
+        rating = None
+
+        if isinstance(rating_data.get("summary"), dict):
+            description = rating_data.get("summary", {}).get("average", 0.0)
+
+        # 4. Сбор результата
         return {
             "title": title,
             "author": author,
@@ -50,5 +59,5 @@ class OpenLibraryClient(BaseApiClient):
                 else None
             ),
             "description": description,
-            "rating": work_data.get("rating"),  # может быть None
+            "rating": rating,
         }

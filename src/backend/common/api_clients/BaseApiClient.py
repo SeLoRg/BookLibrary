@@ -16,7 +16,9 @@ class BaseApiClient(ABC):
         self.client = httpx.AsyncClient(timeout=self.timeout)
         self.logger = logger
 
-    async def _request(self, method: str, url: str, **kwargs) -> Optional[dict, Any]:
+    async def _request(
+        self, method: str, url: str, **kwargs
+    ) -> Optional[Dict[str, Any]]:
         try:
             full_url = self.base_url + url
             self.logger.debug(
@@ -41,9 +43,3 @@ class BaseApiClient(ABC):
 
     async def close(self):
         await self.client.aclose()
-
-    async def __aenter__(self):
-        return self
-
-    async def __aexit__(self, exc_type, exc_val, exc_tb):
-        await self.close()
